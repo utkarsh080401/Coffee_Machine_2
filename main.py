@@ -34,3 +34,4 @@ resources = {
 # TODO: 2. Check whether resources are sufficient to make a coffee.
 
 print("What do you like, mf: ")
+print("hello")
