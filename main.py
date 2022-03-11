@@ -54,6 +54,7 @@ def process_coins(q, d, n, p):
 def check_transaction_successful(money_received, drink_cost):
     if money_received > drink_cost:
         change = round(money_received-drink_cost, 2)
+        print(f"Here is ${change} in change.")
         global profit
         profit += drink_cost
         return True
@@ -62,32 +63,33 @@ def check_transaction_successful(money_received, drink_cost):
         return False
 
 
-
-
-
-    _
-
+def make_coffee(drink_name, order_ingredients):
+    for item in order_ingredients:
+        resources[item] -= order_ingredients[item]
+    print(f"Here is your drink: {drink_name}☕")
 
 
 is_on = True
 while is_on:
-    choice = input("what the heck do you want")
+    choice = input("what the heck do you want, espresso, latte or cappuccino? ")
     if choice == "off":
         is_on = False
     elif choice == "report":
         print(f"Water: {resources['water']} ")
-        print(f"Milk:   {resources['milk']}")
-        print(f"Coffee: {resources['coffee']}")
-        print(f"Money:  ${profit}")
+        print(f"Milk:   {resources['milk']} ")
+        print(f"Coffee: {resources['coffee']}   ")
+        print(f"Money:  ${profit}   ")
     else:
         drink = MENU[choice]
         if is_resource_sufficient(drink['ingredients']):
             quarters = int(input("Enter the number of quarters"))
             dimes = int(input("Enter the number of dimes"))
-            nickels = int(input("Enter the number of nickels"))
-            pennies = int(input("Enter the number of pennies"))
-            payment= process_coins(quarters, dimes, nickels, pennies)
+            nickels = int(input("Enter the number of nickels    "))
+            pennies = int(input("Enter the number of pennies    "))
+            payment = process_coins(quarters, dimes, nickels, pennies)
             check_transaction_successful(payment, drink['cost'])
+            make_coffee(choice, drink['ingredients'])
+
 
 
 
